@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:online_shopping/models/product.dart';
+import 'package:online_shopping/providers/saved_item_provider.dart';
+import 'package:provider/provider.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({Key? key, required this.product}) : super(key: key);
@@ -9,6 +11,8 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final savedItemProvider = Provider.of<SavedItemProvider>(context);
+
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(context, '/product', arguments: {"product": product});
@@ -29,9 +33,10 @@ class ProductCard extends StatelessWidget {
                   child: GestureDetector(
                       onTap: () {
                         print("heart!");
+                        savedItemProvider.addToSavedProductListOrRemoveWhenDupe(product);
                       },
                       child: FaIcon(
-                        FontAwesomeIcons.heart,
+                        savedItemProvider.isProductSaved(product) ? FontAwesomeIcons.solidHeart : FontAwesomeIcons.heart,
                         color: Colors.white,
                       ))),
             ],

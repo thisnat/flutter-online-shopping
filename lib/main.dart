@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:online_shopping/providers/saved_item_provider.dart';
 import 'package:online_shopping/screens/cart_screen.dart';
 import 'package:online_shopping/screens/checkout_screen.dart';
 import 'package:online_shopping/screens/home_screen.dart';
 import 'package:online_shopping/screens/product_screen.dart';
 import 'package:online_shopping/screens/saved_screen.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,17 +16,20 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return ChangeNotifierProvider<SavedItemProvider>(
+      create: (context) => SavedItemProvider(),
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        initialRoute: '/',
+        routes: {
+          '/': (context) => const MyHomePage(),
+          '/product': (context) => const ProductScreen(),
+          '/checkout': (context) => const CheckoutScreen()
+        },
       ),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const MyHomePage(),
-        '/product': (context) => const ProductScreen(),
-        '/checkout': (context) => const CheckoutScreen()
-      },
     );
   }
 }

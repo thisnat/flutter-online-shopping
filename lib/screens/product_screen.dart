@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:online_shopping/providers/saved_item_provider.dart';
+import 'package:provider/provider.dart';
 
 class ProductScreen extends StatefulWidget {
   const ProductScreen({super.key});
@@ -13,6 +15,7 @@ class _ProductScreenState extends State<ProductScreen> {
   Widget build(BuildContext context) {
     final arguments = (ModalRoute.of(context)?.settings.arguments ?? <String, dynamic>{}) as Map;
     final product = arguments["product"];
+    final savedItemProvider = Provider.of<SavedItemProvider>(context);
 
     return Scaffold(
       appBar: AppBar(backgroundColor: Colors.black),
@@ -27,7 +30,13 @@ class _ProductScreenState extends State<ProductScreen> {
               SizedBox(
                 height: 16,
               ),
-              Align(alignment: Alignment.centerRight, child: FaIcon(FontAwesomeIcons.heart)),
+              GestureDetector(
+                  onTap: () {
+                    savedItemProvider.addToSavedProductListOrRemoveWhenDupe(product);
+                  },
+                  child: Align(
+                      alignment: Alignment.centerRight,
+                      child: FaIcon(savedItemProvider.isProductSaved(product) ? FontAwesomeIcons.solidHeart : FontAwesomeIcons.heart))),
               SizedBox(
                 height: 16,
               ),
@@ -48,14 +57,19 @@ class _ProductScreenState extends State<ProductScreen> {
             ]),
           )),
       floatingActionButton: SafeArea(
-        child: Container(
-          width: MediaQuery.of(context).size.width - 24,
-          padding: EdgeInsets.all(16),
-          decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.circular(8)),
-          child: Text(
-            "Add to Cart",
-            style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
-            textAlign: TextAlign.center,
+        child: GestureDetector(
+          onTap: () {
+            print("add to cart");
+          },
+          child: Container(
+            width: MediaQuery.of(context).size.width - 24,
+            padding: EdgeInsets.all(16),
+            decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.circular(8)),
+            child: Text(
+              "Add to Cart",
+              style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
+            ),
           ),
         ),
       ),

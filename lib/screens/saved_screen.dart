@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:online_shopping/providers/saved_item_provider.dart';
+import 'package:provider/provider.dart';
 
 class SavedScreen extends StatefulWidget {
   const SavedScreen({super.key});
@@ -11,14 +13,18 @@ class SavedScreen extends StatefulWidget {
 class _SavedScreenState extends State<SavedScreen> {
   @override
   Widget build(BuildContext context) {
+    final savedItemProvider = Provider.of<SavedItemProvider>(context);
+
     return ListView.builder(
       shrinkWrap: true,
-      itemCount: 10 + 1,
+      itemCount: savedItemProvider.savedProductList.length + 1,
       itemBuilder: (context, index) {
+        // need to refactor this
+
         if (index == 0) {
           return GestureDetector(
             onTap: () {
-              print("click");
+              savedItemProvider.clearSavedProductList();
             },
             child: Padding(
               padding: EdgeInsets.all(16),
@@ -36,8 +42,11 @@ class _SavedScreenState extends State<SavedScreen> {
           );
         } else {
           return Dismissible(
-              key: Key(index.toString()),
+              key: Key(savedItemProvider.savedProductList[index - 1].id!),
               direction: DismissDirection.endToStart,
+              onDismissed: (direction) {
+                savedItemProvider.removeFromProductListById(savedItemProvider.savedProductList[index - 1].id!);
+              },
               background: Container(
                   color: Colors.red,
                   child: Align(
@@ -51,14 +60,14 @@ class _SavedScreenState extends State<SavedScreen> {
               child: ListTile(
                   contentPadding: EdgeInsets.symmetric(horizontal: 8),
                   leading: AspectRatio(
-                    child: Image.network("https://images.unsplash.com/photo-1551028150-64b9f398f678?fit=crop&w=800&q=800", fit: BoxFit.cover),
+                    child: Image.network(savedItemProvider.savedProductList[index - 1].imageUrl!, fit: BoxFit.cover),
                     aspectRatio: 4 / 3,
                   ),
                   title: Text(
-                    "T-Bone Slice 300g.",
+                    savedItemProvider.savedProductList[index - 1].name!,
                     style: TextStyle(overflow: TextOverflow.ellipsis),
                   ),
-                  subtitle: Text("250 THB"),
+                  subtitle: Text("${savedItemProvider.savedProductList[index - 1].price} THB"),
                   trailing: Container(
                     margin: EdgeInsets.only(right: 8),
                     padding: EdgeInsets.all(12),
