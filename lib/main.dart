@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:online_shopping/screens/cart_screen.dart';
+import 'package:online_shopping/screens/checkout_screen.dart';
 import 'package:online_shopping/screens/home_screen.dart';
 import 'package:online_shopping/screens/product_screen.dart';
 import 'package:online_shopping/screens/saved_screen.dart';
@@ -19,7 +20,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       initialRoute: '/',
-      routes: {'/': (context) => const MyHomePage(), '/product': (context) => const ProductScreen()},
+      routes: {
+        '/': (context) => const MyHomePage(),
+        '/product': (context) => const ProductScreen(),
+        '/checkout': (context) => const CheckoutScreen()
+      },
     );
   }
 }

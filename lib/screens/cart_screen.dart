@@ -46,12 +46,17 @@ class _CartScreenState extends State<CartScreen> {
                 Text("250 THB", style: TextStyle(fontSize: 18)),
               ],
             ),
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-              decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.all(Radius.circular(8))),
-              child: Text(
-                "Checkout",
-                style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/checkout');
+              },
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.all(Radius.circular(8))),
+                child: Text(
+                  "Checkout",
+                  style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                ),
               ),
             )
           ],
