@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:online_shopping/screens/CartScreen.dart';
-import 'package:online_shopping/screens/HomeScreen.dart';
-import 'package:online_shopping/screens/ProductScreen.dart';
-import 'package:online_shopping/screens/SavedScreen.dart';
+import 'package:online_shopping/screens/cart_screen.dart';
+import 'package:online_shopping/screens/home_screen.dart';
+import 'package:online_shopping/screens/product_screen.dart';
+import 'package:online_shopping/screens/saved_screen.dart';
 
 void main() {
   runApp(const MyApp());

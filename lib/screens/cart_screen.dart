@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:online_shopping/components/CartItem.dart';
+import 'package:online_shopping/components/cart_item.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});

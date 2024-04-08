@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:online_shopping/components/ProductCard.dart';
+import 'package:online_shopping/components/product_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
