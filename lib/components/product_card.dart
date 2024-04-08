@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:online_shopping/models/product.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({super.key});
+  const ProductCard({Key? key, required this.product}) : super(key: key);
+
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, '/product');
+        Navigator.pushNamed(context, '/product', arguments: {"product": product});
       },
       child: Card(
         clipBehavior: Clip.antiAlias,
@@ -17,7 +20,7 @@ class ProductCard extends StatelessWidget {
           Stack(
             children: [
               AspectRatio(
-                child: Image.network("https://images.unsplash.com/photo-1551028150-64b9f398f678?fit=crop&w=200&q=200", fit: BoxFit.cover),
+                child: Image.network(product.imageUrl!, fit: BoxFit.cover),
                 aspectRatio: 4 / 3,
               ),
               Positioned(
@@ -37,10 +40,10 @@ class ProductCard extends StatelessWidget {
             padding: EdgeInsets.all(8),
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text(
-                "T-Bone Slice 300g.",
+                product.name!,
                 style: TextStyle(fontWeight: FontWeight.bold, overflow: TextOverflow.ellipsis),
               ),
-              Text("250 THB")
+              Text("${product.price} THB")
             ]),
           )
         ]),

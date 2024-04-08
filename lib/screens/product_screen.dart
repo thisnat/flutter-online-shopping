@@ -11,6 +11,9 @@ class ProductScreen extends StatefulWidget {
 class _ProductScreenState extends State<ProductScreen> {
   @override
   Widget build(BuildContext context) {
+    final arguments = (ModalRoute.of(context)?.settings.arguments ?? <String, dynamic>{}) as Map;
+    final product = arguments["product"];
+
     return Scaffold(
       appBar: AppBar(backgroundColor: Colors.black),
       body: Padding(
@@ -18,7 +21,7 @@ class _ProductScreenState extends State<ProductScreen> {
           child: SingleChildScrollView(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               AspectRatio(
-                child: Image.network("https://images.unsplash.com/photo-1551028150-64b9f398f678?fit=crop&w=800&q=800", fit: BoxFit.cover),
+                child: Image.network(product.imageUrl, fit: BoxFit.cover),
                 aspectRatio: 4 / 3,
               ),
               SizedBox(
@@ -29,14 +32,14 @@ class _ProductScreenState extends State<ProductScreen> {
                 height: 16,
               ),
               Text(
-                "T-Bone Slice 300g.",
+                product.name,
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               SizedBox(
                 height: 8,
               ),
               Text(
-                "250 THB",
+                "${product.price} THB",
                 style: TextStyle(fontSize: 20),
               ),
               SizedBox(
