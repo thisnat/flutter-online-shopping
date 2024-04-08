@@ -1,5 +1,7 @@
+import 'package:customizable_counter/customizable_counter.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:online_shopping/components/CartItem.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -15,36 +17,13 @@ class _CartScreenState extends State<CartScreen> {
       body: ListView.builder(
           itemCount: 10 + 1,
           itemBuilder: (context, index) {
-            return Dismissible(
-                key: Key(index.toString()),
-                direction: DismissDirection.endToStart,
-                background: Container(
-                    color: Colors.red,
-                    child: Align(
-                        alignment: Alignment.centerRight,
-                        child: Padding(
-                            padding: EdgeInsets.only(right: 24),
-                            child: Icon(
-                              FontAwesomeIcons.trash,
-                              color: Colors.white,
-                            )))),
-                child: ListTile(
-                    contentPadding: EdgeInsets.symmetric(horizontal: 8),
-                    leading: AspectRatio(
-                      child: Image.network("https://images.unsplash.com/photo-1551028150-64b9f398f678?fit=crop&w=800&q=800", fit: BoxFit.cover),
-                      aspectRatio: 4 / 3,
-                    ),
-                    title: Text("T-Bone Slice 300g."),
-                    subtitle: Text("250 THB"),
-                    trailing: Container(
-                      margin: EdgeInsets.only(right: 8),
-                      padding: EdgeInsets.all(12),
-                      decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.circular(360)),
-                      child: Text(
-                        "12",
-                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-                      ),
-                    )));
+            if (index == 10) {
+              return SizedBox(
+                height: 96,
+              );
+            } else {
+              return CartItem();
+            }
           }),
       floatingActionButton: Container(
         padding: EdgeInsets.symmetric(vertical: 20, horizontal: 16),

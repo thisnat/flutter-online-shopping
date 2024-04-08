@@ -32,6 +32,9 @@ class _ProductScreenState extends State<ProductScreen> {
                 "T-Bone Slice 300g.",
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
+              SizedBox(
+                height: 8,
+              ),
               Text(
                 "250 THB",
                 style: TextStyle(fontSize: 20),

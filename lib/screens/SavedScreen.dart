@@ -12,19 +12,26 @@ class _SavedScreenState extends State<SavedScreen> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      shrinkWrap: true,
       itemCount: 10 + 1,
       itemBuilder: (context, index) {
         if (index == 0) {
-          return Padding(
-            padding: EdgeInsets.symmetric(vertical: 16),
-            child: Row(
-              children: [
-                Icon(FontAwesomeIcons.trash),
-                SizedBox(
-                  width: 8,
-                ),
-                Text('Remove all'),
-              ],
+          return GestureDetector(
+            onTap: () {
+              print("click");
+            },
+            child: Padding(
+              padding: EdgeInsets.all(16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Icon(FontAwesomeIcons.trash),
+                  SizedBox(
+                    width: 8,
+                  ),
+                  Text('Remove all'),
+                ],
+              ),
             ),
           );
         } else {
@@ -47,7 +54,10 @@ class _SavedScreenState extends State<SavedScreen> {
                     child: Image.network("https://images.unsplash.com/photo-1551028150-64b9f398f678?fit=crop&w=800&q=800", fit: BoxFit.cover),
                     aspectRatio: 4 / 3,
                   ),
-                  title: Text("T-Bone Slice 300g."),
+                  title: Text(
+                    "T-Bone Slice 300g.",
+                    style: TextStyle(overflow: TextOverflow.ellipsis),
+                  ),
                   subtitle: Text("250 THB"),
                   trailing: Container(
                     margin: EdgeInsets.only(right: 8),
