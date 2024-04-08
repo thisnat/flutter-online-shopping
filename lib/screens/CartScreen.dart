@@ -1,6 +1,4 @@
-import 'package:customizable_counter/customizable_counter.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:online_shopping/components/CartItem.dart';
 
 class CartScreen extends StatefulWidget {
