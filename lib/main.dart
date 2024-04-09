@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:online_shopping/providers/cart_item_provider.dart';
 import 'package:online_shopping/providers/saved_item_provider.dart';
@@ -9,7 +10,8 @@ import 'package:online_shopping/screens/product_screen.dart';
 import 'package:online_shopping/screens/saved_screen.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  await dotenv.load(fileName: ".env");
   runApp(const MyApp());
 }
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:online_shopping/providers/cart_item_provider.dart';
 import 'package:online_shopping/utils/number_formatter.dart';
 import 'package:provider/provider.dart';
@@ -10,7 +11,7 @@ class CheckoutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cartItemProvider = Provider.of<CartItemProvider>(context);
-    final String payUrl = "https://payment-api.yimplaHorm.com/checkout?price=" + cartItemProvider.getTotalPrice().toString();
+    final String payUrl = dotenv.env['PAY_URL']! + cartItemProvider.getTotalPrice().toString();
 
     return Scaffold(
       appBar: AppBar(
