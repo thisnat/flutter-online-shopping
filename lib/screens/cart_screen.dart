@@ -56,11 +56,14 @@ class _CartScreenState extends State<CartScreen> {
             ),
             GestureDetector(
               onTap: () {
-                Navigator.pushNamed(context, '/checkout');
+                if (cartItemProvider.getTotalPrice() != 0) {
+                  Navigator.pushNamed(context, '/checkout');
+                }
               },
               child: Container(
                 padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                decoration: const BoxDecoration(color: Colors.black, borderRadius: BorderRadius.all(Radius.circular(8))),
+                decoration: BoxDecoration(
+                    color: cartItemProvider.getTotalPrice() != 0 ? Colors.black : Colors.grey, borderRadius: BorderRadius.all(Radius.circular(8))),
                 child: const Text(
                   "Checkout",
                   style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
