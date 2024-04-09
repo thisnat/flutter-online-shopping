@@ -31,7 +31,7 @@ class _CartScreenState extends State<CartScreen> {
           // }
           ),
       floatingActionButton: Container(
-        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
             color: Colors.white,
@@ -40,17 +40,17 @@ class _CartScreenState extends State<CartScreen> {
                 color: Colors.grey.withOpacity(0.5),
                 spreadRadius: 5,
                 blurRadius: 7,
-                offset: Offset(0, 3),
+                offset: const Offset(0, 3),
               )
             ],
-            borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16))),
+            borderRadius: const BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16))),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
               children: [
-                Text("Total : ", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-                Text("${cartItemProvider.getTotalPrice()} THB", style: TextStyle(fontSize: 18)),
+                const Text("Total : ", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                Text("${cartItemProvider.getTotalPrice()} THB", style: const TextStyle(fontSize: 18)),
               ],
             ),
             GestureDetector(
@@ -58,9 +58,9 @@ class _CartScreenState extends State<CartScreen> {
                 Navigator.pushNamed(context, '/checkout');
               },
               child: Container(
-                padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.all(Radius.circular(8))),
-                child: Text(
+                padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                decoration: const BoxDecoration(color: Colors.black, borderRadius: BorderRadius.all(Radius.circular(8))),
+                child: const Text(
                   "Checkout",
                   style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
                 ),

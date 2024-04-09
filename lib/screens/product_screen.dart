@@ -22,14 +22,14 @@ class _ProductScreenState extends State<ProductScreen> {
     return Scaffold(
       appBar: AppBar(backgroundColor: Colors.black),
       body: Padding(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           child: SingleChildScrollView(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               AspectRatio(
-                child: Image.network(product.imageUrl, fit: BoxFit.cover),
                 aspectRatio: 4 / 3,
+                child: Image.network(product.imageUrl, fit: BoxFit.cover),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 16,
               ),
               GestureDetector(
@@ -39,21 +39,21 @@ class _ProductScreenState extends State<ProductScreen> {
                   child: Align(
                       alignment: Alignment.centerRight,
                       child: FaIcon(savedItemProvider.isProductSaved(product) ? FontAwesomeIcons.solidHeart : FontAwesomeIcons.heart))),
-              SizedBox(
+              const SizedBox(
                 height: 16,
               ),
               Text(
                 product.name,
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 8,
               ),
               Text(
                 "${product.price} THB",
-                style: TextStyle(fontSize: 20),
+                style: const TextStyle(fontSize: 20),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 16,
               ),
             ]),
@@ -68,10 +68,10 @@ class _ProductScreenState extends State<ProductScreen> {
           },
           child: Container(
             width: MediaQuery.of(context).size.width - 24,
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
                 color: cartItemProvider.isProductInCart(product.id) ? Colors.grey : Colors.black, borderRadius: BorderRadius.circular(8)),
-            child: Text(
+            child: const Text(
               "Add to Cart",
               style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,

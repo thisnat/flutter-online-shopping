@@ -20,14 +20,14 @@ class _CartItemState extends State<CartItem> {
     final cartItemProvider = Provider.of<CartItemProvider>(context);
 
     return Dismissible(
-        key: Key("test"),
+        key: const Key("test"),
         direction: DismissDirection.endToStart,
         onDismissed: (direction) {
           cartItemProvider.removeFromCartById(widget.product.id!);
         },
         background: Container(
             color: Colors.red,
-            child: Align(
+            child: const Align(
                 alignment: Alignment.centerRight,
                 child: Padding(
                     padding: EdgeInsets.only(right: 24),
@@ -36,14 +36,14 @@ class _CartItemState extends State<CartItem> {
                       color: Colors.white,
                     )))),
         child: ListTile(
-            contentPadding: EdgeInsets.symmetric(horizontal: 8),
+            contentPadding: const EdgeInsets.symmetric(horizontal: 8),
             leading: AspectRatio(
-              child: Image.network(widget.product.imageUrl!, fit: BoxFit.cover),
               aspectRatio: 4 / 3,
+              child: Image.network(widget.product.imageUrl!, fit: BoxFit.cover),
             ),
             title: Text(
               widget.product.name!,
-              style: TextStyle(overflow: TextOverflow.ellipsis),
+              style: const TextStyle(overflow: TextOverflow.ellipsis),
             ),
             subtitle: Text("${widget.product.price} THB"),
             trailing: CustomizableCounter(

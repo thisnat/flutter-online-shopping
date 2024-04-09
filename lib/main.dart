@@ -49,15 +49,15 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   String _title = "Recommendations";
 
   final List<Tab> myTabs = <Tab>[
-    Tab(text: 'Home', icon: FaIcon(FontAwesomeIcons.house)),
-    Tab(text: 'Saved', icon: FaIcon(FontAwesomeIcons.solidHeart)),
-    Tab(text: 'Cart', icon: FaIcon(FontAwesomeIcons.cartShopping)),
+    const Tab(text: 'Home', icon: FaIcon(FontAwesomeIcons.house)),
+    const Tab(text: 'Saved', icon: FaIcon(FontAwesomeIcons.solidHeart)),
+    const Tab(text: 'Cart', icon: FaIcon(FontAwesomeIcons.cartShopping)),
   ];
 
   final List<Widget> myPages = <Widget>[
-    HomeScreen(),
-    SavedScreen(),
-    CartScreen(),
+    const HomeScreen(),
+    const SavedScreen(),
+    const CartScreen(),
   ];
 
   late TabController _tabController;
@@ -90,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        titleTextStyle: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
+        titleTextStyle: const TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
         centerTitle: false,
         title: Text(_title),
       ),

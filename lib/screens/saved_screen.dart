@@ -28,7 +28,7 @@ class _SavedScreenState extends State<SavedScreen> {
             onTap: () {
               savedItemProvider.clearSavedProductList();
             },
-            child: Padding(
+            child: const Padding(
               padding: EdgeInsets.all(16),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -51,7 +51,7 @@ class _SavedScreenState extends State<SavedScreen> {
               },
               background: Container(
                   color: Colors.red,
-                  child: Align(
+                  child: const Align(
                       alignment: Alignment.centerRight,
                       child: Padding(
                           padding: EdgeInsets.only(right: 24),
@@ -60,23 +60,23 @@ class _SavedScreenState extends State<SavedScreen> {
                             color: Colors.white,
                           )))),
               child: ListTile(
-                  contentPadding: EdgeInsets.symmetric(horizontal: 8),
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 8),
                   leading: AspectRatio(
-                    child: Image.network(savedItemProvider.savedProductList[index - 1].imageUrl!, fit: BoxFit.cover),
                     aspectRatio: 4 / 3,
+                    child: Image.network(savedItemProvider.savedProductList[index - 1].imageUrl!, fit: BoxFit.cover),
                   ),
                   title: Text(
                     savedItemProvider.savedProductList[index - 1].name!,
-                    style: TextStyle(overflow: TextOverflow.ellipsis),
+                    style: const TextStyle(overflow: TextOverflow.ellipsis),
                   ),
                   subtitle: Text("${savedItemProvider.savedProductList[index - 1].price} THB"),
                   trailing: Container(
-                    margin: EdgeInsets.only(right: 8),
-                    padding: EdgeInsets.all(12),
+                    margin: const EdgeInsets.only(right: 8),
+                    padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.circular(360)),
                     child: Text(
                       cartItemProvider.getQuantityByProductId(savedItemProvider.savedProductList[index - 1].id!).toString(),
-                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                     ),
                   )));
         }

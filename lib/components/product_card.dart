@@ -19,13 +19,13 @@ class ProductCard extends StatelessWidget {
       },
       child: Card(
         clipBehavior: Clip.antiAlias,
-        margin: EdgeInsets.all(6),
+        margin: const EdgeInsets.all(6),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Stack(
             children: [
               AspectRatio(
-                child: Image.network(product.imageUrl!, fit: BoxFit.cover),
                 aspectRatio: 4 / 3,
+                child: Image.network(product.imageUrl!, fit: BoxFit.cover),
               ),
               Positioned(
                   top: 4,
@@ -42,11 +42,11 @@ class ProductCard extends StatelessWidget {
             ],
           ),
           Padding(
-            padding: EdgeInsets.all(8),
+            padding: const EdgeInsets.all(8),
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text(
                 product.name!,
-                style: TextStyle(fontWeight: FontWeight.bold, overflow: TextOverflow.ellipsis),
+                style: const TextStyle(fontWeight: FontWeight.bold, overflow: TextOverflow.ellipsis),
               ),
               Text("${product.price} THB")
             ]),
