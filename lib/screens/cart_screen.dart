@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:online_shopping/components/cart_item.dart';
 import 'package:online_shopping/providers/cart_item_provider.dart';
+import 'package:online_shopping/utils/number_formatter.dart';
 import 'package:provider/provider.dart';
 
 class CartScreen extends StatefulWidget {
@@ -50,7 +51,7 @@ class _CartScreenState extends State<CartScreen> {
             Row(
               children: [
                 const Text("Total : ", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-                Text("${cartItemProvider.getTotalPrice()} THB", style: const TextStyle(fontSize: 18)),
+                Text("${cartItemProvider.getTotalPrice().toDecimalFormat()} THB", style: const TextStyle(fontSize: 18)),
               ],
             ),
             GestureDetector(

@@ -50,8 +50,8 @@ class CartItemProvider extends ChangeNotifier {
       if (id == element.product.id) {
         element.quantity++;
         notifyListeners();
+        break;
       }
-      break;
     }
   }
 
@@ -60,8 +60,8 @@ class CartItemProvider extends ChangeNotifier {
       if (id == element.product.id) {
         element.quantity--;
         notifyListeners();
+        break;
       }
-      break;
     }
   }
 }

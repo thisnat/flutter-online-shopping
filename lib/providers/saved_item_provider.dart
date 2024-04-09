@@ -4,12 +4,15 @@ import 'package:online_shopping/models/product.dart';
 class SavedItemProvider extends ChangeNotifier {
   List<Product> savedProductList = [];
 
-  void addToSavedProductListOrRemoveWhenDupe(Product product) {
+  bool addToSavedProductListOrRemoveWhenDupe(Product product) {
     if (!isProductSaved(product)) {
       savedProductList.add(product);
       notifyListeners();
+      return true;
     } else {
       removeFromProductListById(product.id!);
+      notifyListeners();
+      return false;
     }
   }
 
@@ -18,9 +21,15 @@ class SavedItemProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void clearSavedProductList() {
+  bool clearSavedProductList() {
+    if (savedProductList.isEmpty) {
+      return false;
+    }
+
     savedProductList.clear();
     notifyListeners();
+
+    return true;
   }
 
   bool isProductSaved(Product product) {

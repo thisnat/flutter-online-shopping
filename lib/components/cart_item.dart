@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:online_shopping/models/product.dart';
 import 'package:online_shopping/providers/cart_item_provider.dart';
+import 'package:online_shopping/utils/number_formatter.dart';
 import 'package:provider/provider.dart';
 
 class CartItem extends StatefulWidget {
@@ -20,7 +21,7 @@ class _CartItemState extends State<CartItem> {
     final cartItemProvider = Provider.of<CartItemProvider>(context);
 
     return Dismissible(
-        key: const Key("test"),
+        key: Key(widget.product.id!),
         direction: DismissDirection.endToStart,
         onDismissed: (direction) {
           cartItemProvider.removeFromCartById(widget.product.id!);
@@ -45,7 +46,7 @@ class _CartItemState extends State<CartItem> {
               widget.product.name!,
               style: const TextStyle(overflow: TextOverflow.ellipsis),
             ),
-            subtitle: Text("${widget.product.price} THB"),
+            subtitle: Text("${widget.product.price?.toDecimalFormat()} THB"),
             trailing: CustomizableCounter(
               borderColor: Colors.transparent,
               showButtonText: false,

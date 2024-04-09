@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:online_shopping/providers/cart_item_provider.dart';
+import 'package:online_shopping/utils/number_formatter.dart';
+import 'package:provider/provider.dart';
 
 class CheckoutScreen extends StatelessWidget {
   const CheckoutScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final cartItemProvider = Provider.of<CartItemProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
@@ -29,9 +34,9 @@ class CheckoutScreen extends StatelessWidget {
           const SizedBox(
             height: 16,
           ),
-          const Text(
-            "250 THB",
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          Text(
+            "${cartItemProvider.getTotalPrice().toDecimalFormat()} THB",
+            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
         ]),
       ),
