@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:online_shopping/components/cart_item.dart';
+import 'package:online_shopping/providers/cart_item_provider.dart';
+import 'package:provider/provider.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -11,18 +13,23 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
+    final cartItemProvider = Provider.of<CartItemProvider>(context);
+
     return Scaffold(
       body: ListView.builder(
-          itemCount: 10 + 1,
+          itemCount: cartItemProvider.inCartItemList.length,
           itemBuilder: (context, index) {
-            if (index == 10) {
-              return SizedBox(
-                height: 96,
-              );
-            } else {
-              return CartItem();
-            }
-          }),
+            return CartItem(product: cartItemProvider.inCartItemList[index].product);
+          }
+          //   if (index == 10) {
+          //     return SizedBox(
+          //       height: 96,
+          //     );
+          //   } else {
+          //     return CartItem();
+          //   }
+          // }
+          ),
       floatingActionButton: Container(
         padding: EdgeInsets.symmetric(vertical: 20, horizontal: 16),
         width: MediaQuery.of(context).size.width,
@@ -43,7 +50,7 @@ class _CartScreenState extends State<CartScreen> {
             Row(
               children: [
                 Text("Total : ", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-                Text("250 THB", style: TextStyle(fontSize: 18)),
+                Text("${cartItemProvider.getTotalPrice()} THB", style: TextStyle(fontSize: 18)),
               ],
             ),
             GestureDetector(

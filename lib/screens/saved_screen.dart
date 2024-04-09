@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:online_shopping/providers/cart_item_provider.dart';
 import 'package:online_shopping/providers/saved_item_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -14,6 +15,7 @@ class _SavedScreenState extends State<SavedScreen> {
   @override
   Widget build(BuildContext context) {
     final savedItemProvider = Provider.of<SavedItemProvider>(context);
+    final cartItemProvider = Provider.of<CartItemProvider>(context);
 
     return ListView.builder(
       shrinkWrap: true,
@@ -73,7 +75,7 @@ class _SavedScreenState extends State<SavedScreen> {
                     padding: EdgeInsets.all(12),
                     decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.circular(360)),
                     child: Text(
-                      "12",
+                      cartItemProvider.getQuantityByProductId(savedItemProvider.savedProductList[index - 1].id!).toString(),
                       style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                     ),
                   )));

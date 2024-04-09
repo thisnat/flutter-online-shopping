@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:online_shopping/providers/cart_item_provider.dart';
 import 'package:online_shopping/providers/saved_item_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -16,6 +17,7 @@ class _ProductScreenState extends State<ProductScreen> {
     final arguments = (ModalRoute.of(context)?.settings.arguments ?? <String, dynamic>{}) as Map;
     final product = arguments["product"];
     final savedItemProvider = Provider.of<SavedItemProvider>(context);
+    final cartItemProvider = Provider.of<CartItemProvider>(context);
 
     return Scaffold(
       appBar: AppBar(backgroundColor: Colors.black),
@@ -59,12 +61,16 @@ class _ProductScreenState extends State<ProductScreen> {
       floatingActionButton: SafeArea(
         child: GestureDetector(
           onTap: () {
-            print("add to cart");
+            if (!cartItemProvider.isProductInCart(product.id)) {
+              print("add to cart");
+              cartItemProvider.addToCart(product);
+            }
           },
           child: Container(
             width: MediaQuery.of(context).size.width - 24,
             padding: EdgeInsets.all(16),
-            decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.circular(8)),
+            decoration: BoxDecoration(
+                color: cartItemProvider.isProductInCart(product.id) ? Colors.grey : Colors.black, borderRadius: BorderRadius.circular(8)),
             child: Text(
               "Add to Cart",
               style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),

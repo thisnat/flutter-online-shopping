@@ -1,9 +1,14 @@
 import 'package:customizable_counter/customizable_counter.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:online_shopping/models/product.dart';
+import 'package:online_shopping/providers/cart_item_provider.dart';
+import 'package:provider/provider.dart';
 
 class CartItem extends StatefulWidget {
-  const CartItem({super.key});
+  const CartItem({Key? key, required this.product}) : super(key: key);
+
+  final Product product;
 
   @override
   State<CartItem> createState() => _CartItemState();
@@ -12,9 +17,14 @@ class CartItem extends StatefulWidget {
 class _CartItemState extends State<CartItem> {
   @override
   Widget build(BuildContext context) {
+    final cartItemProvider = Provider.of<CartItemProvider>(context);
+
     return Dismissible(
         key: Key("test"),
         direction: DismissDirection.endToStart,
+        onDismissed: (direction) {
+          cartItemProvider.removeFromCartById(widget.product.id!);
+        },
         background: Container(
             color: Colors.red,
             child: Align(
@@ -28,23 +38,23 @@ class _CartItemState extends State<CartItem> {
         child: ListTile(
             contentPadding: EdgeInsets.symmetric(horizontal: 8),
             leading: AspectRatio(
-              child: Image.network("https://images.unsplash.com/photo-1551028150-64b9f398f678?fit=crop&w=800&q=800", fit: BoxFit.cover),
+              child: Image.network(widget.product.imageUrl!, fit: BoxFit.cover),
               aspectRatio: 4 / 3,
             ),
             title: Text(
-              "T-Bone Slice 300g.",
+              widget.product.name!,
               style: TextStyle(overflow: TextOverflow.ellipsis),
             ),
-            subtitle: Text("250 THB"),
+            subtitle: Text("${widget.product.price} THB"),
             trailing: CustomizableCounter(
               borderColor: Colors.transparent,
               showButtonText: false,
               backgroundColor: Colors.black,
               textColor: Colors.white,
               textSize: 16,
-              count: 0,
+              count: cartItemProvider.getQuantityByProductId(widget.product.id!).toDouble(),
               step: 1,
-              minCount: 0,
+              minCount: 1,
               incrementIcon: const Icon(
                 Icons.add,
                 color: Colors.white,
@@ -53,8 +63,11 @@ class _CartItemState extends State<CartItem> {
                 Icons.remove,
                 color: Colors.white,
               ),
-              onCountChange: (c) {
-                print(c);
+              onIncrement: (c) {
+                cartItemProvider.increaseProductQuantity(widget.product.id!);
+              },
+              onDecrement: (c) {
+                cartItemProvider.decreaseProductQuantity(widget.product.id!);
               },
             )));
   }
