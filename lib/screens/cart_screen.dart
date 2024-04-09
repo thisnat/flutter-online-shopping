@@ -18,19 +18,16 @@ class _CartScreenState extends State<CartScreen> {
 
     return Scaffold(
       body: ListView.builder(
-          itemCount: cartItemProvider.inCartItemList.length,
+          itemCount: cartItemProvider.inCartItemList.length + 1,
           itemBuilder: (context, index) {
-            return CartItem(product: cartItemProvider.inCartItemList[index].product);
-          }
-          //   if (index == 10) {
-          //     return SizedBox(
-          //       height: 96,
-          //     );
-          //   } else {
-          //     return CartItem();
-          //   }
-          // }
-          ),
+            if (index == cartItemProvider.inCartItemList.length) {
+              return const SizedBox(
+                height: 96,
+              );
+            } else {
+              return CartItem(product: cartItemProvider.inCartItemList[index].product);
+            }
+          }),
       floatingActionButton: Container(
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
         width: MediaQuery.of(context).size.width,
