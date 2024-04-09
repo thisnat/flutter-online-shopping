@@ -72,7 +72,6 @@ class _ProductScreenState extends State<ProductScreen> {
         child: GestureDetector(
           onTap: () {
             if (!cartItemProvider.isProductInCart(product.id!)) {
-              print("add to cart");
               cartItemProvider.addToCart(product);
               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                 content: Text("Add item to cart"),

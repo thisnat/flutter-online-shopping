@@ -60,7 +60,8 @@ class _CartScreenState extends State<CartScreen> {
               child: Container(
                 padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                 decoration: BoxDecoration(
-                    color: cartItemProvider.getTotalPrice() != 0 ? Colors.black : Colors.grey, borderRadius: BorderRadius.all(Radius.circular(8))),
+                    color: cartItemProvider.getTotalPrice() != 0 ? Colors.black : Colors.grey,
+                    borderRadius: const BorderRadius.all(Radius.circular(8))),
                 child: const Text(
                   "Checkout",
                   style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
